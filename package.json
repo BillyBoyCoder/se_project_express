@@ -1,0 +1,13 @@
+{
+  "name": "se_project_express",
+  "version": "1.0.0",
+  "description": "Over the last two sprints, you built the front end for your \"WTWR\" project. The back-end projects will focus on creating a server for \"WTWR\". While working on this, you'll learn how to work with databases, set up security and testing, and deploy your web application on a remote machine. The goal of all this is to create a server with an API and user authorization.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Billy",
+  "license": "ISC",
+  "type": "commonjs"
+}
