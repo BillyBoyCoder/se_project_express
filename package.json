@@ -9,5 +9,8 @@
   "keywords": [],
   "author": "Billy",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^4.22.1"
+  }
 }
