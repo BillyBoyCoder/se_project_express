@@ -28,4 +28,38 @@ const deleteItem = (req, res) => {
     .catch((err) => res.status(500).send({ message: "Error deleting item", error: err.message }));
 };
 
-module.exports = { getItems, createItem, deleteItem };
+const likeItem = (req, res) => {
+  const { itemId } = req.params;
+
+  ClothingItem.findByIdAndUpdate(
+    itemId,
+    { $addToSet: { likes: req.user._id } },
+    { new: true }
+  )
+    .then((item) => {
+      if (!item) {
+        return res.status(404).send({ message: "Requested resource not found" });
+      }
+      return res.status(200).send(item);
+    })
+    .catch((err) => res.status(500).send({ message: "Error liking item", error: err.message }));
+};
+
+const dislikeItem = (req, res) => {
+  const { itemId } = req.params;
+
+  ClothingItem.findByIdAndUpdate(
+    itemId,
+    { $pull: { likes: req.user._id } },
+    { new: true }
+  )
+    .then((item) => {
+      if (!item) {
+        return res.status(404).send({ message: "Requested resource not found" });
+      }
+      return res.status(200).send(item);
+    })
+    .catch((err) => res.status(500).send({ message: "Error unliking item", error: err.message }));
+};
+
+module.exports = { getItems, createItem, deleteItem, likeItem, dislikeItem };
