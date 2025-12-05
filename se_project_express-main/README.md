@@ -11,6 +11,29 @@ At this stage, you'll:
 
 As a stretch goal, you'll refine your application's error handling, but this won't be due until Project 13.
 
+## Project Structure
+```
+├── controllers/          # Route handlers
+│   ├── clothingItems.js
+│   └── users.js
+├── models/              # Data schemas and models
+│   ├── clothingItem.js
+│   └── user.js
+├── routes/              # API routes
+│   ├── clothingItems.js
+│   ├── users.js
+│   └── index.js
+├── utils/               # Utility functions
+│   └── errors.js
+├── .editorconfig        # Editor configuration
+├── .env                 # Environment variables
+├── .eslintrc.js         # ESLint configuration
+├── .gitignore           # Git ignore rules
+├── app.js               # Application entry point
+├── package.json         # Project dependencies
+└── README.md            # Project documentation
+```
+
 ## Running the Project
 `npm run start` — to launch the server 
 
