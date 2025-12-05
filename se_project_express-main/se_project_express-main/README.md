@@ -1,5 +1,16 @@
-# WTWR (What to Wear?): Back End
-The back-end project is focused on creating a server for the WTWR application. You’ll gain a deeper understanding of how to work with databases, set up security and testing, and deploy web applications on a remote machine. The eventual goal is to create a server with an API and user authorization.
+# Project 12 - working with ExpressJS
+
+## Objective
+Over the last two sprints, you built the front end for your "WTWR" project. The back-end projects will focus on creating a server for "WTWR". While working on this, you'll learn how to work with databases, set up security and testing, and deploy your web application on a remote machine. The goal of all this is to create a server with an API and user authorization.
+
+At this stage, you'll:
+
+- Set up an Express project
+- Create a database and connect it to the server
+- Configure the first routes and controllers
+
+As a stretch goal, you'll refine your application's error handling, but this won't be due until Project 13.
+
 ## Running the Project
 `npm run start` — to launch the server 
 
