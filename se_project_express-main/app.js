@@ -13,7 +13,7 @@ app.use(express.json());
 // Temporary middleware to simulate logged-in user
 app.use((req, res, next) => {
   req.user = {
-    _id: "67520a4c05c2e4e5beaf6d32", // hardcoded user ID for now
+    _id: "6093136c5834af58c5b64606", // hardcoded user ID for now
   };
   next();
 });
