@@ -16,14 +16,6 @@ const app = express();
 // Middleware
 app.use(express.json());
 
-// Temporary middleware to simulate logged-in user
-app.use((req, res, next) => {
-  req.user = {
-    _id: "6093136c5834af58c5b64606", // hardcoded user ID for now
-  };
-  next();
-});
-
 // Routes
 app.use("/", routes);
 
