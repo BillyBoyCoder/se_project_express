@@ -18,12 +18,19 @@ const createItem = (req, res) => {
 const deleteItem = (req, res) => {
   const { itemId } = req.params;
 
-  ClothingItem.findByIdAndDelete(itemId)
+  ClothingItem.findById(itemId)
     .then((item) => {
       if (!item) {
         return res.status(404).send({ message: "Requested resource not found" });
       }
-      return res.status(200).send({ message: "Item deleted successfully" });
+
+      // Check if the current user is the owner of the item
+      if (item.owner.toString() !== req.user._id) {
+        return res.status(403).send({ message: "Forbidden: You do not have permission to delete this item" });
+      }
+
+      return ClothingItem.findByIdAndDelete(itemId)
+        .then(() => res.status(200).send({ message: "Item deleted successfully" }));
     })
     .catch((err) => res.status(500).send({ message: "Error deleting item", error: err.message }));
 };

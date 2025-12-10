@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const routes = require("./routes");
 
 // Replace with your actual connection string if not using environment variables
@@ -14,6 +15,7 @@ const { PORT = 3001, MONGODB_URI = testerConnectionString } = process.env;
 const app = express();
 
 // Middleware
+app.use(cors());
 app.use(express.json());
 
 // Routes
