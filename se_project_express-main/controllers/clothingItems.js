@@ -1,4 +1,5 @@
 const ClothingItem = require("../models/clothingItem");
+const mongoose = require("mongoose");
 
 const getItems = (req, res) => {
   ClothingItem.find({})
@@ -17,6 +18,10 @@ const createItem = (req, res) => {
 
 const deleteItem = (req, res) => {
   const { itemId } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(itemId)) {
+    return res.status(400).send({ message: "Invalid item ID" });
+  }
 
   ClothingItem.findById(itemId)
     .then((item) => {
@@ -49,7 +54,12 @@ const likeItem = (req, res) => {
       }
       return res.status(200).send(item);
     })
-    .catch((err) => res.status(500).send({ message: "Error liking item", error: err.message }));
+    .catch((err) => {
+      if (err.name === "CastError") {
+        return res.status(400).send({ message: "Invalid item ID" });
+      }
+      return res.status(500).send({ message: "Error liking item", error: err.message });
+    });
 };
 
 const dislikeItem = (req, res) => {
@@ -66,7 +76,12 @@ const dislikeItem = (req, res) => {
       }
       return res.status(200).send(item);
     })
-    .catch((err) => res.status(500).send({ message: "Error unliking item", error: err.message }));
+    .catch((err) => {
+      if (err.name === "CastError") {
+        return res.status(400).send({ message: "Invalid item ID" });
+      }
+      return res.status(500).send({ message: "Error unliking item", error: err.message });
+    });
 };
 
 module.exports = { getItems, createItem, deleteItem, likeItem, dislikeItem };
