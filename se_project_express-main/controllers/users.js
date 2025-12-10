@@ -9,9 +9,8 @@ const getUsers = (req, res) => {
     .catch((err) => res.status(500).send({ message: "Error retrieving users", error: err.message }));
 };
 
-const getUser = (req, res) => {
-  const { userId } = req.params;
-  User.findById(userId)
+const getCurrentUser = (req, res) => {
+  User.findById(req.user._id)
     .then((user) => {
       if (!user) {
         return res.status(404).send({ message: "Requested resource not found" });
@@ -52,4 +51,4 @@ const login = (req, res) => {
     });
 };
 
-module.exports = { getUsers, getUser, createUser, login };
+module.exports = { getUsers, getCurrentUser, createUser, login };
