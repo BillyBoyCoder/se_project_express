@@ -51,4 +51,26 @@ const login = (req, res) => {
     });
 };
 
-module.exports = { getUsers, getCurrentUser, createUser, login };
+const updateUser = (req, res) => {
+  const { name, avatar } = req.body;
+
+  User.findByIdAndUpdate(
+    req.user._id,
+    { name, avatar },
+    { new: true, runValidators: true }
+  )
+    .then((user) => {
+      if (!user) {
+        return res.status(404).send({ message: "Requested resource not found" });
+      }
+      return res.status(200).send(user);
+    })
+    .catch((err) => {
+      if (err.name === "ValidationError") {
+        return res.status(400).send({ message: "Validation error", error: err.message });
+      }
+      return res.status(500).send({ message: "Error updating user", error: err.message });
+    });
+};
+
+module.exports = { getUsers, getCurrentUser, createUser, login, updateUser };
